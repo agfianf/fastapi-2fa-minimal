@@ -63,7 +63,7 @@ This repository contains a minimal implementation of enabling/disabling 2FA in a
         participant DB as Database (users_db)
         participant T as TwoFactor Class
 
-        U->>S: POST /login {username, password}
+        U->>S: POST /login <br>{username, password}
         S->>DB: Lookup user record by username
         alt User not found or invalid password
             S-->>U: Return error "Invalid credentials"
@@ -73,14 +73,14 @@ This repository contains a minimal implementation of enabling/disabling 2FA in a
                 S-->>U: Return login success with token (dummy_token_no_mfa)
             else MFA enabled
                 S-->>U: Return response "MFA enabled. Please submit OTP" (mfa_required: true)
-                U->>S: POST /login-2fa {username, token}
+                U->>S: POST /login-2fa <br>{username, token}
                 S->>DB: Retrieve mfa_secret from user record
                 S->>T: Instantiate TwoFactor(username, secret)
                 T-->>S: Verify OTP via verify_token(token)
                 alt OTP valid
-                    S-->>U: Return login success with token (dummy_token_with_mfa)
+                    S-->>U: Return<br>login success with token (dummy_token_with_mfa)
                 else OTP invalid
-                    S-->>U: Return error "Invalid OTP"
+                    S-->>U: Return<br>error "Invalid OTP"
                 end
             end
         end
@@ -99,7 +99,7 @@ This repository contains a minimal implementation of enabling/disabling 2FA in a
         participant DB as Database (users_db)
         participant T as TwoFactor Class
 
-        U->>S: POST /disable-mfa {username, password, token}
+        U->>S: POST /disable-mfa <br>{username, password, token}
         S->>DB: Lookup user by username
         alt User not found
             S-->>U: Return error "User not found"
@@ -110,15 +110,15 @@ This repository contains a minimal implementation of enabling/disabling 2FA in a
             else
                 S->>DB: Check if MFA is enabled
                 alt MFA already disabled
-                    S-->>U: Return error "MFA is already disabled"
+                    S-->>U: Return <br>error "MFA is already disabled"
                 else
                     S->>T: Instantiate TwoFactor(username, user.mfa_secret)
                     T-->>S: Verify OTP via verify_token(token)
                     alt OTP valid
                         S->>DB: Update user record (set mfa_enabled to false & clear mfa_secret)
-                        S-->>U: Return {message: "MFA disabled successfully"}
+                        S-->>U: Return <br>{message: "MFA disabled successfully"}
                     else
-                        S-->>U: Return error "Invalid OTP for disabling MFA"
+                        S-->>U: Return <br>error "Invalid OTP for disabling MFA"
                     end
                 end
             end
