@@ -9,7 +9,7 @@ This repository contains a minimal implementation of enabling/disabling 2FA in a
   
     <details>
     <summary>Show Illustration</summary>
-    
+
     ![Workflow Sign Up Authenticator App](assets/workflow-otp.png)
     </details>
 
@@ -19,9 +19,8 @@ This repository contains a minimal implementation of enabling/disabling 2FA in a
 - **Disable MFA**  
   Users can disable MFA by verifying their password and an OTP. After disabling, they must manually remove the account from their authenticator app.
 
-> How it works can see [workflows.md](workflows.md)
+## How it works can see [workflows.md](workflows.md)
 
-# Getting Started 🔧
 
 ## Installation
 1. Clone the repository:
