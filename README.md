@@ -66,11 +66,11 @@ This repository contains a minimal implementation of enabling/disabling 2FA in a
         U->>S: POST /login <br>{username, password}
         S->>DB: Lookup user record by username
         alt User not found or invalid password
-            S-->>U: Return error "Invalid credentials"
+            S-->>U: Return <br>error "Invalid credentials"
         else
             S->>DB: Check mfa_enabled flag
             alt MFA disabled
-                S-->>U: Return login success with token (dummy_token_no_mfa)
+                S-->>U: Return <br>login success with token (dummy_token_no_mfa)
             else MFA enabled
                 S-->>U: Return response "MFA enabled. Please submit OTP" (mfa_required: true)
                 U->>S: POST /login-2fa <br>{username, token}
@@ -78,9 +78,9 @@ This repository contains a minimal implementation of enabling/disabling 2FA in a
                 S->>T: Instantiate TwoFactor(username, secret)
                 T-->>S: Verify OTP via verify_token(token)
                 alt OTP valid
-                    S-->>U: Return<br>login success with token (dummy_token_with_mfa)
+                    S-->>U: Return <br>login success with token (dummy_token_with_mfa)
                 else OTP invalid
-                    S-->>U: Return<br>error "Invalid OTP"
+                    S-->>U: Return <br>error "Invalid OTP"
                 end
             end
         end
@@ -102,11 +102,11 @@ This repository contains a minimal implementation of enabling/disabling 2FA in a
         U->>S: POST /disable-mfa <br>{username, password, token}
         S->>DB: Lookup user by username
         alt User not found
-            S-->>U: Return error "User not found"
+            S-->>U: Return <br>error "User not found"
         else
             S->>DB: Validate password
             alt Incorrect password
-                S-->>U: Return error "Incorrect password"
+                S-->>U: Return <br>error "Incorrect password"
             else
                 S->>DB: Check if MFA is enabled
                 alt MFA already disabled
