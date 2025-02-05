@@ -1,0 +1,100 @@
+[project]
+name = "fastapi-2fa-minimal"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "fastapi>=0.115.8",
+    "multipart>=1.2.1",
+    "pillow>=11.1.0",
+    "pydantic>=2.10.6",
+    "pydantic-settings>=2.7.1",
+    "pyotp>=2.9.0",
+    "qrcode>=8.0",
+    "uvicorn>=0.34.0",
+]
+
+[dependency-groups]
+dev = [
+    "ruff>=0.9.4",
+]
+
+[tool.ruff]
+exclude = [
+    ".html",
+    ".bzr",
+    ".direnv",
+    ".eggs",
+    ".git",
+    ".development",
+    ".git-rewrite",
+    ".hg",
+    ".ipynb_checkpoints",
+    ".mypy_cache",
+    ".nox",
+    ".pants.d",
+    ".pyenv",
+    ".csv",
+    ".pytest_cache",
+    ".pytype",
+    ".ruff_cache",
+    ".svn",
+    ".tox",
+    ".venv",
+    ".vscode",
+    ".jpg",
+    ".jpeg",
+    ".png",
+    ".pdf",
+    ".json",
+    ".onnx",
+    ".pt",
+    ".engine",
+    ".ipynb",
+    "__pypackages__",
+    "__pycache__",
+    "_build",
+    "data/assets",
+    ".logs/",
+    "buck-out",
+    "build",
+    "dist",
+    "generate",
+    "research",
+    "node_modules",
+    "site-packages",
+    "venv",
+    "tmp",
+    "tests",
+]
+
+line-length = 88
+indent-width = 4
+respect-gitignore = true
+fix = true
+show-fixes = true
+required-version = ">=0.9.0"
+
+
+[tool.ruff.lint]
+
+ignore = [
+    "N805",
+    "N815",
+    "E203",
+    "D413",
+    "ANN101",
+    "B008",
+    "ERA001",
+    "D107"
+]
+
+# Allow fix for all enabled rules (when `--fix`) is provided.
+fixable = ["ALL"]
+unfixable = ["F401"]
+
+[tool.ruff.format]
+indent-style = "space"
+quote-style = "double"
+line-ending = "lf"
