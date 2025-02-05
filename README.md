@@ -21,7 +21,6 @@ This repository contains a minimal implementation of enabling/disabling 2FA in a
 
 ## How it works can see [workflows.md](workflows.md)
 
-
 ## Installation
 1. Clone the repository:
     ```bash
@@ -73,3 +72,5 @@ This repository contains a minimal implementation of enabling/disabling 2FA in a
     ```
     After receiving a success response for MFA disablement, manually remove the account from your authenticator app.
 
+
+![Swagger API](assets/docs-2fa-fastapi.png)
